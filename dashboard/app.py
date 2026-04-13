@@ -21,16 +21,34 @@ st.set_page_config(
 # ── CUSTOM CSS ────────────────────────────────────────────────
 st.markdown("""
 <style>
-    /* ── Dynamic gradient background ── */
-    .stApp {
-        background: linear-gradient(135deg, #e8f4fd 0%, #f0f4ff 30%, #faf5ff 60%, #fff0f9 100%);
+    /* ── Light mode background ── */
+    @media (prefers-color-scheme: light) {
+        .stApp {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f4ff 30%, #faf5ff 60%, #fff0f9 100%);
+            background-attachment: fixed;
+        }
+    }
+    /* ── Dark mode background ── */
+    @media (prefers-color-scheme: dark) {
+        .stApp {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 30%, #1a0533 60%, #0f172a 100%);
+            background-attachment: fixed;
+        }
+    }
+    /* Fallback for Streamlit's own dark mode toggle */
+    [data-theme="dark"] .stApp {
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 30%, #1a0533 60%, #0f172a 100%) !important;
+        background-attachment: fixed;
+    }
+    [data-theme="light"] .stApp {
+        background: linear-gradient(135deg, #e8f4fd 0%, #f0f4ff 30%, #faf5ff 60%, #fff0f9 100%) !important;
         background-attachment: fixed;
     }
     .main .block-container {
         background: transparent;
     }
 
-    /* ── Sidebar ── */
+    /* ── Sidebar — same in both modes, looks great ── */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #1e3a8a 0%, #2563eb 60%, #7c3aed 100%);
     }
@@ -44,17 +62,16 @@ st.markdown("""
 
     /* ── Tabs ── */
     .stTabs [data-baseweb="tab-list"] {
-        background: rgba(255,255,255,0.6);
+        background: rgba(128,128,128,0.15);
         border-radius: 12px;
         padding: 4px;
         backdrop-filter: blur(8px);
-        border: 1px solid rgba(255,255,255,0.8);
+        border: 1px solid rgba(128,128,128,0.2);
     }
     .stTabs [data-baseweb="tab"] {
         font-size: 0.88rem;
         font-weight: 500;
         border-radius: 8px;
-        color: #475569;
         padding: 6px 18px !important;
         white-space: nowrap;
     }
@@ -66,59 +83,64 @@ st.markdown("""
 
     /* ── Metric cards ── */
     [data-testid="metric-container"] {
-        background: rgba(255,255,255,0.75);
+        background: rgba(128,128,128,0.1);
         border-radius: 14px;
         padding: 1rem 1.2rem;
-        border: 1px solid rgba(255,255,255,0.9);
+        border: 1px solid rgba(128,128,128,0.2);
         backdrop-filter: blur(10px);
         box-shadow: 0 4px 16px rgba(99,102,241,0.08);
     }
 
-    /* ── Insight box ── */
+    /* ── Insight box — light mode ── */
     .insight-box {
-        background: linear-gradient(135deg, rgba(239,246,255,0.9), rgba(245,243,255,0.9));
+        background: rgba(99,102,241,0.08);
         border-left: 4px solid #7c3aed;
         padding: 0.8rem 1rem;
         border-radius: 0 12px 12px 0;
         margin: 0.5rem 0 1rem 0;
         font-size: 0.9rem;
-        color: #4c1d95;
         backdrop-filter: blur(8px);
         border-top: 1px solid rgba(124,58,237,0.15);
         border-right: 1px solid rgba(124,58,237,0.15);
         border-bottom: 1px solid rgba(124,58,237,0.15);
     }
+    /* Insight box text — light mode */
+    @media (prefers-color-scheme: light) {
+        .insight-box { color: #4c1d95; }
+    }
+    /* Insight box text — dark mode */
+    @media (prefers-color-scheme: dark) {
+        .insight-box { color: #c4b5fd; }
+    }
 
     /* ── Section descriptions ── */
     .section-desc {
-        color: #64748b;
         font-size: 0.9rem;
         margin-bottom: 1rem;
         margin-top: -0.5rem;
+        opacity: 0.7;
     }
 
     /* ── Headings ── */
-    h1 { background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+    h1 { background: linear-gradient(135deg, #6366f1, #a78bfa);
          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
          background-clip: text; }
-    h2 { color: #1e293b; }
-    h3 { color: #334155; }
 
     /* ── Chart containers ── */
     [data-testid="stPlotlyChart"] {
-        background: rgba(255,255,255,0.7);
+        background: rgba(128,128,128,0.08);
         border-radius: 14px;
         padding: 0.5rem;
-        border: 1px solid rgba(255,255,255,0.9);
+        border: 1px solid rgba(128,128,128,0.15);
         backdrop-filter: blur(8px);
         box-shadow: 0 2px 12px rgba(99,102,241,0.07);
     }
 
     /* ── Dataframes ── */
     [data-testid="stDataFrame"] {
-        background: rgba(255,255,255,0.8);
+        background: rgba(128,128,128,0.08);
         border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.9);
+        border: 1px solid rgba(128,128,128,0.15);
     }
 
     /* ── Buttons ── */
@@ -139,9 +161,9 @@ st.markdown("""
 
     /* ── Chat input ── */
     .stChatInput > div {
-        background: rgba(255,255,255,0.8) !important;
+        background: rgba(128,128,128,0.1) !important;
         border-radius: 12px !important;
-        border: 1px solid rgba(124,58,237,0.2) !important;
+        border: 1px solid rgba(124,58,237,0.3) !important;
         backdrop-filter: blur(8px);
     }
 
@@ -498,6 +520,8 @@ with tab2:
         fig6.update_traces(textposition='outside', textinfo='percent+label',
                            pull=[0.03, 0])
         fig6.update_layout(height=400, showlegend=True,
+                           paper_bgcolor='rgba(0,0,0,0)',
+                           plot_bgcolor='rgba(0,0,0,0)',
                            annotations=[dict(text='Revenue<br>Share', x=0.5, y=0.5,
                                             font_size=13, showarrow=False)])
         st.plotly_chart(fig6, use_container_width=True)
@@ -598,7 +622,9 @@ with tab3:
                       color='segment', color_discrete_map=colors,
                       hole=0.45)
         fig9.update_traces(textposition='outside', textinfo='percent+label')
-        fig9.update_layout(height=400, showlegend=False)
+        fig9.update_layout(height=400, showlegend=False,
+                           paper_bgcolor='rgba(0,0,0,0)',
+                           plot_bgcolor='rgba(0,0,0,0)')
         st.plotly_chart(fig9, use_container_width=True)
 
     with col2:
