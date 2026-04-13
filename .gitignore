@@ -1,0 +1,17 @@
+# API keys — never upload!
+.env
+
+# Data files — too large for GitHub
+data/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Mac system files
+.DS_Store
+
+# Jupyter runtime
+.jupyter/
