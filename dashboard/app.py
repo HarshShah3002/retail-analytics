@@ -48,7 +48,7 @@ st.markdown("""
         background: transparent;
     }
 
-    /* ── Sidebar — same in both modes, looks great ── */
+    /* ── Sidebar - same in both modes, looks great ── */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #1e3a8a 0%, #2563eb 60%, #7c3aed 100%);
     }
@@ -91,7 +91,7 @@ st.markdown("""
         box-shadow: 0 4px 16px rgba(99,102,241,0.08);
     }
 
-    /* ── Insight box — light mode ── */
+    /* ── Insight box - light mode ── */
     .insight-box {
         background: rgba(99,102,241,0.08);
         border-left: 4px solid #7c3aed;
@@ -104,11 +104,11 @@ st.markdown("""
         border-right: 1px solid rgba(124,58,237,0.15);
         border-bottom: 1px solid rgba(124,58,237,0.15);
     }
-    /* Insight box text — light mode */
+    /* Insight box text - light mode */
     @media (prefers-color-scheme: light) {
         .insight-box { color: #4c1d95; }
     }
-    /* Insight box text — dark mode */
+    /* Insight box text - dark mode */
     @media (prefers-color-scheme: dark) {
         .insight-box { color: #c4b5fd; }
     }
@@ -302,7 +302,7 @@ df, rfm, forecast, basket = load_data()
 # ── SIDEBAR ───────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 🛒 Retail Analytics")
-    st.markdown("*Online Retail II — UK Wholesaler (2009–2011)*")
+    st.markdown("*Online Retail II - UK Wholesaler (2009–2011)*")
     st.markdown("---")
 
     st.markdown("---")
@@ -319,7 +319,7 @@ filtered_df = df.copy()
 
 # ── HEADER ────────────────────────────────────────────────────
 st.title("🛒 Retail Analytics Dashboard")
-st.markdown("A complete end-to-end analysis of a UK-based wholesale retailer — covering sales trends, customer behaviour, machine learning forecasts, and product insights.")
+st.markdown("A complete end-to-end analysis of a UK-based wholesale retailer - covering sales trends, customer behaviour, machine learning forecasts, and product insights.")
 st.markdown("---")
 
 
@@ -353,7 +353,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
 
 
 # ══════════════════════════════════════════════════════════════
-# TAB 1 — SALES TRENDS
+# TAB 1 - SALES TRENDS
 # ══════════════════════════════════════════════════════════════
 with tab1:
     st.header("Sales Trends")
@@ -361,7 +361,7 @@ with tab1:
 
     # Monthly Revenue
     st.subheader("Monthly Revenue Trend")
-    st.markdown('<p class="section-desc">Each point represents one month of total sales. Look for recurring peaks — they reveal the business\'s seasonal rhythm.</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-desc">Each point represents one month of total sales. Look for recurring peaks. They reveal the business seasonal rhythm.</p>', unsafe_allow_html=True)
 
     monthly = filtered_df.copy()
     monthly['year_month'] = monthly['invoice_date'].dt.to_period('M').astype(str)
@@ -384,8 +384,7 @@ with tab1:
     st.markdown("""
     <div class="insight-box">
     📌 <strong>Key Insight:</strong> Revenue spikes every September–November, driven by early Christmas gift ordering. 
-    This business is highly seasonal — Q4 (Oct–Nov) consistently generates 40–60% more revenue than other months.
-    Jan–Feb are the slowest months as the post-Christmas slowdown kicks in.
+    This business is highly seasonal. Q4 (Oct and Nov) consistently generates 40 to 60% more revenue than other months. Jan and Feb are the slowest as the post-Christmas slowdown kicks in.
     </div>
     """, unsafe_allow_html=True)
 
@@ -430,7 +429,7 @@ with tab1:
     st.markdown("""
     <div class="insight-box">
     📌 <strong>Key Insight:</strong> Thursday is the busiest day by far. Saturday is almost completely dead (only 30 orders vs 7,773 on Thursday). 
-    This confirms this is a B2B wholesale business — companies place orders mid-week, not on weekends.
+    This confirms this is a B2B wholesale business - companies place orders mid-week, not on weekends.
     </div>
     """, unsafe_allow_html=True)
 
@@ -462,14 +461,14 @@ with tab1:
 
     st.markdown("""
     <div class="insight-box">
-    📌 <strong>Key Insight:</strong> The REGENCY CAKESTAND 3 TIER is the top revenue product despite selling far fewer units — it has a higher price per unit. 
+    📌 <strong>Key Insight:</strong> The REGENCY CAKESTAND 3 TIER is the top revenue product despite selling far fewer units. It carries a higher price per unit than most. 
     Home décor and gifting items dominate the top 10, confirming this is a gift/home wholesale company.
     </div>
     """, unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════
-# TAB 2 — GEOGRAPHIC
+# TAB 2 - GEOGRAPHIC
 # ══════════════════════════════════════════════════════════════
 with tab2:
     st.header("Geographic Analysis")
@@ -505,7 +504,7 @@ with tab2:
         st.plotly_chart(fig5, use_container_width=True)
 
     with col2:
-        st.subheader("Revenue Share — UK vs International")
+        st.subheader("Revenue Share: UK vs International")
         st.markdown('<p class="section-desc">How much of total revenue comes from the UK vs all other countries combined?</p>', unsafe_allow_html=True)
 
         uk_rev = country_rev[country_rev['country'] == 'United Kingdom']['revenue'].values[0]
@@ -529,7 +528,7 @@ with tab2:
     st.markdown("""
     <div class="insight-box">
     📌 <strong>Key Insight:</strong> The UK accounts for ~83% of all revenue. However, international customers are 
-    strategically important — they place fewer but much larger orders, making them high-value targets for growth.
+    strategically important. They place fewer but much larger orders, making them high-value targets for growth.
     </div>
     """, unsafe_allow_html=True)
 
@@ -552,7 +551,7 @@ with tab2:
         st.plotly_chart(fig7, use_container_width=True)
 
     with col4:
-        st.subheader("International Markets — Customers vs Revenue")
+        st.subheader("International Markets: Customers vs Revenue")
         st.markdown('<p class="section-desc">Bubble chart showing each country\'s customer count vs revenue. Bigger bubbles = higher average order value. Ideal targets are bottom-right (few customers, high revenue).</p>', unsafe_allow_html=True)
 
         intl = country_rev[(country_rev['country'] != 'United Kingdom') &
@@ -571,9 +570,7 @@ with tab2:
 
     st.markdown("""
     <div class="insight-box">
-    📌 <strong>Key Insight:</strong> Netherlands and EIRE (Ireland) are standout international markets — 
-    very few customers but enormous revenue per order (£2,430 avg for Netherlands). 
-    Singapore has only 11 orders but £2,301 avg order value — a huge untapped growth opportunity.
+    📌 <strong>Key Insight:</strong> Netherlands and EIRE (Ireland) are standout international markets. Very few customers but enormous revenue per order (£2,430 avg for Netherlands). Singapore has only 11 orders but a £2,301 average order value. A huge untapped growth opportunity.
     </div>
     """, unsafe_allow_html=True)
 
@@ -583,7 +580,7 @@ with tab2:
 
 
 # ══════════════════════════════════════════════════════════════
-# TAB 3 — RFM SEGMENTS
+# TAB 3 - RFM SEGMENTS
 # ══════════════════════════════════════════════════════════════
 with tab3:
     st.header("RFM Customer Segmentation")
@@ -645,15 +642,13 @@ with tab3:
 
     st.markdown("""
     <div class="insight-box">
-    📌 <strong>Key Insight:</strong> Champions make up only 22% of customers but generate <strong>68% of total revenue (£12.1M)</strong> — 
-    a textbook example of the 80/20 Pareto Principle. The 227 "At Risk" customers average £4,488 each — 
-    losing them means losing £1M+ in revenue. Urgent win-back campaigns are needed for this group.
+    📌 <strong>Key Insight:</strong> Champions make up only 22% of customers but generate <strong>68% of total revenue (£12.1M)</strong>. That is the 80/20 Pareto Principle in action. The 227 At Risk customers average £4,488 each. Losing them means losing over £1M in revenue. Win-back campaigns are urgently needed for this group.
     </div>
     """, unsafe_allow_html=True)
 
     # RFM Scatter Plot
-    st.subheader("RFM Score Distribution — Recency vs Monetary")
-    st.markdown('<p class="section-desc">Each dot is a customer. Position shows recency (x) vs total spend (y). Colour shows their segment. Ideal customers are top-right — recent AND high spending.</p>', unsafe_allow_html=True)
+    st.subheader("RFM Score Distribution: Recency vs Monetary")
+    st.markdown('<p class="section-desc">Each dot is a customer. Position shows recency (x) vs total spend (y). Colour shows their segment. Ideal customers are top-right - recent AND high spending.</p>', unsafe_allow_html=True)
 
     rfm_sample = rfm.sample(min(1000, len(rfm)), random_state=42)
     fig11 = px.scatter(rfm_sample, x='recency', y='monetary',
@@ -668,7 +663,7 @@ with tab3:
 
     # Segment detail table
     st.subheader("Segment Summary Table")
-    st.markdown('<p class="section-desc">Full breakdown of each segment — use this to decide where to focus marketing and retention efforts.</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-desc">Full breakdown of each segment. Use this to decide where to focus your marketing and retention efforts.</p>', unsafe_allow_html=True)
 
     seg_display = seg_summary.rename(columns={
         'customers': 'Customers', 'avg_recency': 'Avg Days Since Purchase',
@@ -684,9 +679,9 @@ with tab3:
         "💚 Loyal Customers": "Upsell premium products. Offer loyalty rewards. Keep them engaged.",
         "🌱 Potential Loyalists": "Offer a membership program. Encourage second and third purchases.",
         "🆕 Recent Customers": "Onboard well with a welcome series. Encourage repeat purchase within 30 days.",
-        "⚠️ At Risk": "URGENT — Send personalised win-back emails. Offer special discounts immediately.",
+        "⚠️ At Risk": "URGENT - Send personalised win-back emails. Offer special discounts immediately.",
         "🔍 Needs Attention": "Re-engage with targeted campaigns. Remind them of products they liked.",
-        "😴 Lost": "Low priority — send a final re-engagement offer. Accept some are gone.",
+        "😴 Lost": "Low priority. Send one final re-engagement offer and accept that some customers have moved on.",
     }
     cols = st.columns(2)
     for i, (seg, action) in enumerate(actions.items()):
@@ -695,7 +690,7 @@ with tab3:
 
 
 # ══════════════════════════════════════════════════════════════
-# TAB 4 — COHORT RETENTION
+# TAB 4 - COHORT RETENTION
 # ══════════════════════════════════════════════════════════════
 with tab4:
     st.header("Cohort Retention Analysis")
@@ -725,7 +720,7 @@ with tab4:
     # Show first 12 months only
     retention_12 = retention.iloc[:, :12]
 
-    st.subheader("Retention Heatmap — % of Customers Returning Each Month")
+    st.subheader("Retention Heatmap: % of Customers Returning Each Month")
     st.markdown('<p class="section-desc">Each row = a group of customers who first bought that month. Each column = months after their first purchase. Darker colour = more customers came back. Month 0 is always 100% (their first purchase).</p>', unsafe_allow_html=True)
 
     fig12 = px.imshow(
@@ -742,10 +737,10 @@ with tab4:
 
     st.markdown("""
     <div class="insight-box">
-    📌 <strong>Key Insight:</strong> Retention drops sharply after month 0 — from 100% to roughly 15–35% in month 1. 
+    📌 <strong>Key Insight:</strong> Retention drops sharply after month 0 - from 100% to roughly 15–35% in month 1. 
     This means 65–85% of new customers don't come back the very next month, which is a big opportunity. 
-    The December 2009 cohort shows the strongest retention (35.3% in month 1) — Christmas-season buyers tend to be the most loyal.
-    Late 2010 cohorts (Oct–Dec) had the weakest retention — likely one-time holiday buyers who never returned.
+    The December 2009 cohort shows the strongest retention (35.3% in month 1) - Christmas-season buyers tend to be the most loyal.
+    Late 2010 cohorts (Oct to Dec) had the weakest retention. Most were likely one-time holiday buyers who never came back.
     </div>
     """, unsafe_allow_html=True)
 
@@ -787,7 +782,7 @@ with tab4:
 
 
 # ══════════════════════════════════════════════════════════════
-# TAB 5 — FORECAST
+# TAB 5 - FORECAST
 # ══════════════════════════════════════════════════════════════
 with tab5:
     st.header("ML Revenue Forecast")
@@ -803,11 +798,11 @@ with tab5:
     col1, col2, col3 = st.columns(3)
     col1.metric("🎯 Model R² Score", "0.707", help="How much of revenue variance the model explains. 1.0 = perfect.")
     col2.metric("📏 Mean Abs Error", "£93,750", help="On average, predictions are off by this amount.")
-    col3.metric("📐 RMSE", "£117,576", help="Root Mean Squared Error — penalises large errors more.")
+    col3.metric("📐 RMSE", "£117,576", help="Root Mean Squared Error. Penalises large errors more than MAE does.")
 
     st.markdown("""
     <div class="insight-box">
-    📌 <strong>About the model:</strong> An R² of 0.707 means the model explains ~71% of revenue variance — decent for a dataset with only 24 months. 
+    📌 <strong>About the model:</strong> An R² of 0.707 means the model explains ~71% of revenue variance - decent for a dataset with only 24 months. 
     The main driver is seasonality (month of year accounts for 53% of predictions), followed by Q4 indicator (20%). 
     With more historical data (3–5 years), accuracy would improve significantly.
     </div>
@@ -898,7 +893,7 @@ with tab5:
 
     st.markdown("""
     <div class="insight-box">
-    📌 <strong>Key Insight:</strong> Month of year + Q4 indicator together explain 73% of predictions — confirming this business is 
+    📌 <strong>Key Insight:</strong> Month of year + Q4 indicator together explain 73% of predictions - confirming this business is 
     primarily seasonal. The model is essentially saying: "Tell me what month it is, and I can predict revenue fairly well." 
     Historical revenue (lag features) contributes only ~19%, meaning momentum matters less than the calendar.
     </div>
@@ -906,7 +901,7 @@ with tab5:
 
 
 # ══════════════════════════════════════════════════════════════
-# TAB 6 — BASKET ANALYSIS
+# TAB 6 - BASKET ANALYSIS
 # ══════════════════════════════════════════════════════════════
 with tab6:
     st.header("Market Basket Analysis")
@@ -967,7 +962,7 @@ with tab6:
 
     with col1:
         st.subheader("Support vs Confidence")
-        st.markdown('<p class="section-desc">Each bubble is a product pair. Bigger & darker = higher lift (stronger association). Best rules are top-right — common AND reliable.</p>', unsafe_allow_html=True)
+        st.markdown('<p class="section-desc">Each bubble is a product pair. Bigger & darker = higher lift (stronger association). Best rules are top-right (common and reliable).</p>', unsafe_allow_html=True)
 
         fig18 = px.scatter(filtered_rules,
                            x='support', y='confidence',
@@ -983,7 +978,7 @@ with tab6:
 
     with col2:
         st.subheader("Confidence Distribution")
-        st.markdown('<p class="section-desc">Distribution of confidence scores across all rules. A peak near 1.0 means most rules are highly reliable — when you buy A, you almost always buy B.</p>', unsafe_allow_html=True)
+        st.markdown('<p class="section-desc">Distribution of confidence scores across all rules. A peak near 1.0 means most rules are highly reliable - when you buy A, you almost always buy B.</p>', unsafe_allow_html=True)
 
         fig19 = px.histogram(filtered_rules, x='confidence', nbins=15,
                              color_discrete_sequence=['#6366f1'],
@@ -994,7 +989,7 @@ with tab6:
 
     st.markdown("""
     <div class="insight-box">
-    📌 <strong>Key Insight:</strong> The strongest association is Blue & Pink Spotty Party Candles — 88% of customers who buy one also buy the other (lift = 30x). 
+    📌 <strong>Key Insight:</strong> The strongest association is Blue and Pink Spotty Party Candles. 88% of customers who buy one also buy the other (lift = 30x). 
     Easter baskets are bought as colour sets (Pink + Blue + Cream together). 
     Bathroom & Toilet metal signs are almost always purchased together. 
     <strong>Business recommendation:</strong> Bundle colour variants as "Collection Packs", create seasonal gift sets, 
@@ -1015,7 +1010,7 @@ with tab6:
 
 
 # ══════════════════════════════════════════════════════════════
-# TAB 7 — AI BUSINESS ANALYST
+# TAB 7 - AI BUSINESS ANALYST
 # ══════════════════════════════════════════════════════════════
 with tab7:
     st.markdown("""
@@ -1027,12 +1022,12 @@ with tab7:
             <div>
                 <h2 style='margin:0; color:white; font-size:1.6rem;'>AI Business Analyst</h2>
                 <p style='margin:0; opacity:0.85; font-size:0.9rem;'>
-                    Powered by Gemini 2.0 Flash — your intelligent retail data analyst
+                    Powered by Gemini 2.0 Flash - your intelligent retail data analyst
                 </p>
             </div>
         </div>
         <p style='margin:0; opacity:0.9; font-size:0.9rem; line-height:1.6;'>
-            Ask me anything about this retail business — revenue performance, customer behaviour,
+            Ask me anything about this retail business. Revenue performance, customer behaviour,
             product insights, market opportunities, or strategic recommendations.
             I have full knowledge of all 805,549 transactions, 5,878 customers, and every analysis
             on this dashboard.
@@ -1090,7 +1085,7 @@ Your role is to:
 5. Identify risks, opportunities, and patterns
 
 Always be specific with numbers. Structure longer answers with bullet points.
-Be direct and confident — you are the expert. Keep answers concise but complete.
+Be direct and confident. You are the expert. Keep answers concise but complete.
 If asked for recommendations, think like a business consultant, not just a data analyst.
 
 === BUSINESS PROFILE ===
@@ -1115,8 +1110,8 @@ Total countries served: {df['country'].nunique():,}
 
 === MONTHLY REVENUE (full history) ===
 {monthly.to_string()}
-Best month: {best_month} — £{monthly[best_month]:,.0f}
-Worst month: {worst_month} — £{monthly[worst_month]:,.0f}
+Best month: {best_month} at £{monthly[best_month]:,.0f}
+Worst month: {worst_month} at £{monthly[worst_month]:,.0f}
 
 === REVENUE BY DAY OF WEEK ===
 {day_rev.to_string()}
@@ -1140,15 +1135,15 @@ Weakest cohorts: October-December 2010 (9-17% month-1 retention)
 Pattern: Christmas-season first-time buyers have the best retention
 
 === KEY BUSINESS INSIGHTS ===
-- Champions segment: 1,300 customers (22%) generate £12.1M (68% of revenue) — Pareto principle confirmed
+- Champions segment: 1,300 customers (22%) generate £12.1M which is 68% of total revenue
 - At Risk customers: 227 customers averaging £4,488 each = £1M+ at immediate risk
-- Saturday orders: only 30 (vs 7,773 on Thursday) — confirms pure B2B wholesale model
-- Seasonality: Revenue doubles every Sep-Nov vs Jan-Feb — business is highly Christmas-driven
+- Saturday orders: only 30 (vs 7,773 on Thursday) - confirms pure B2B wholesale model
+- Seasonality: Revenue doubles every Sep to Nov compared to Jan and Feb. Highly Christmas-driven business.
 - International opportunity: Netherlands (£2,430 avg order), Singapore (£2,301 avg order)
 - UK dominance: 83% of revenue but lowest avg order value (£439) vs international (up to £2,430)
 - Product bundling: colour variants bought as sets (party candles, Easter baskets, cutlery sets)
-- Lost customers: 779 customers with avg spend of only £246 — not worth heavy win-back investment
-- Potential loyalists: 443 customers with £890 avg spend — high growth potential with right nurturing
+- Lost customers: 779 customers with avg spend of only £246. Not worth heavy win-back investment.
+- Potential loyalists: 443 customers with £890 avg spend. High growth potential with the right nurturing.
 """
 
     ai_context = build_ai_context()
