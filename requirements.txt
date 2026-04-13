@@ -1,0 +1,9 @@
+pandas
+numpy
+plotly
+streamlit
+scikit-learn
+openai
+python-dotenv
+openpyxl
+mlxtend

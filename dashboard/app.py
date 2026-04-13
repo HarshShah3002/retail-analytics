@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-from sqlalchemy import create_engine
+# from sqlalchemy import create_engine  # not needed for deployment
 from openai import OpenAI
 import streamlit.components.v1 as components
 from dotenv import load_dotenv
@@ -259,14 +259,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ── DATABASE CONNECTION ───────────────────────────────────────
+# ── DATA LOADING FROM CSV ────────────────────────────────────
 @st.cache_data
 def load_data():
-    engine = create_engine('mysql+pymysql://root:@localhost/retail_analytics')
-    df = pd.read_sql('SELECT * FROM transactions', engine)
-    rfm = pd.read_sql('SELECT * FROM rfm_segments', engine)
-    forecast = pd.read_sql('SELECT * FROM revenue_forecast', engine)
-    basket = pd.read_sql('SELECT * FROM basket_rules', engine)
+    import os
+    base = os.path.join(os.path.dirname(__file__), '..', 'deployment_data')
+    df = pd.read_csv(os.path.join(base, 'transactions.csv.gz'), compression='gzip')
+    rfm = pd.read_csv(os.path.join(base, 'rfm_segments.csv'))
+    forecast = pd.read_csv(os.path.join(base, 'revenue_forecast.csv'))
+    basket = pd.read_csv(os.path.join(base, 'basket_rules.csv'))
     df['invoice_date'] = pd.to_datetime(df['invoice_date'])
     return df, rfm, forecast, basket
 
