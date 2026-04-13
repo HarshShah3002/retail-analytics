@@ -55,10 +55,13 @@ st.markdown("""
         font-weight: 500;
         border-radius: 8px;
         color: #475569;
+        padding: 6px 18px !important;
+        white-space: nowrap;
     }
     .stTabs [aria-selected="true"] {
         background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
         color: white !important;
+        padding: 6px 18px !important;
     }
 
     /* ── Metric cards ── */
