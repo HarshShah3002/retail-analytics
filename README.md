@@ -1,4 +1,4 @@
-# 🛒 Retail Analytics — From 1 Million Rows to a Live AI Dashboard
+# 🛒 ShopSense: Market Intelligence Analysis — From 1 Million Rows to a Live AI Dashboard
 
 Most businesses are sitting on data they never actually use.
 
