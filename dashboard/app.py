@@ -12,7 +12,7 @@ load_dotenv()
 
 # ── PAGE CONFIG ───────────────────────────────────────────────
 st.set_page_config(
-    page_title="Retail Analytics Dashboard",
+    page_title="ShopSense: Market Intelligence Analysis",
     page_icon="🛒",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -301,7 +301,7 @@ df, rfm, forecast, basket = load_data()
 
 # ── SIDEBAR ───────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 🛒 Retail Analytics")
+    st.markdown("## 🛒 ShopSense")
     st.markdown("*Online Retail II - UK Wholesaler (2009–2011)*")
     st.markdown("---")
 
@@ -318,7 +318,7 @@ filtered_df = df.copy()
 
 
 # ── HEADER ────────────────────────────────────────────────────
-st.title("🛒 Retail Analytics Dashboard")
+st.title("🛒 ShopSense: Market Intelligence Analysis")
 st.markdown("A complete end-to-end analysis of a UK-based wholesale retailer - covering sales trends, customer behaviour, machine learning forecasts, and product insights.")
 st.markdown("---")
 
