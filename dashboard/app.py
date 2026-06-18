@@ -1251,7 +1251,7 @@ Pattern: Christmas-season first-time buyers have the best retention
                         base_url='https://openrouter.ai/api/v1'
                     )
                     response = client.chat.completions.create(
-                        model='google/gemini-2.0-flash-001',
+                        model='google/gemini-2.5-flash',
                         messages=[
                             {'role': 'system', 'content': ai_context},
                             *[{'role': m['role'], 'content': m['content']}
